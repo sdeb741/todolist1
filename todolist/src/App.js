@@ -20,7 +20,7 @@ export default class App extends Component {
 
     const newItem={
       id:this.state.id,
-      title:this.state.item,
+      title:this.state.item
   
     }
     
@@ -41,6 +41,26 @@ export default class App extends Component {
       }
     )
   }
+  handleDelete=(id)=>{
+    const filteredItems=this.state.items.filter(item => item.id !== id)
+    this.setState({
+      items: filteredItems
+    })
+  }
+
+  handleEdit=(id)=>{
+    const filteredItems=this.state.items.filter(item => item.id !== id)
+
+    const selectedItem=this.state.items.find(item=>item.id===id)
+
+    console.log(selectedItem)
+    this.setState({
+      items: filteredItems,
+      item:selectedItem.title,
+      editItem:true,
+      id:id
+    })
+  }
 
   
   render() {
@@ -50,8 +70,8 @@ export default class App extends Component {
         <div className="row">
           <div className="col-10 mx-auto col-md-8 mt-4">
             <h3 className="text-capitalize text-center">todo input</h3>
-            <Todoinput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit}></Todoinput>
-            <Todolist items={this.state.items} clearList={this.clearList}></Todolist>
+            <Todoinput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit} editItem={this.state.editItem}></Todoinput>
+            <Todolist items={this.state.items} clearList={this.clearList} handleDelete={this.handleDelete} handleEdit={this.handleEdit}></Todolist>
           </div>
         </div>
      
