@@ -23,7 +23,7 @@ export default class App extends Component {
       title:this.state.item,
   
     }
-    console.log(newItem)
+    
     const updatedItems=[...this.state.items,newItem]
     
     this.setState({
@@ -32,6 +32,14 @@ export default class App extends Component {
       id: uuid(),
       editItem:false
     })
+  }
+
+  clearList=()=>{
+    this.setState(
+      {
+        items:[]
+      }
+    )
   }
 
   
@@ -43,7 +51,7 @@ export default class App extends Component {
           <div className="col-10 mx-auto col-md-8 mt-4">
             <h3 className="text-capitalize text-center">todo input</h3>
             <Todoinput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit}></Todoinput>
-            <Todolist items={this.state.items}></Todolist>
+            <Todolist items={this.state.items} clearList={this.clearList}></Todolist>
           </div>
         </div>
      
