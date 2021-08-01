@@ -20,7 +20,7 @@ export default class App extends Component {
 
     const newItem={
       id:this.state.id,
-      item:this.state.item,
+      title:this.state.item,
   
     }
     console.log(newItem)
@@ -43,7 +43,7 @@ export default class App extends Component {
           <div className="col-10 mx-auto col-md-8 mt-4">
             <h3 className="text-capitalize text-center">todo input</h3>
             <Todoinput item={this.state.item} handleChange={this.handleChange} handleSubmit={this.handleSubmit}></Todoinput>
-            <Todolist></Todolist>
+            <Todolist items={this.state.items}></Todolist>
           </div>
         </div>
      
